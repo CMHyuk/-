@@ -1,6 +1,6 @@
 package numbergame.setnumtest;
 
-import numbergame.number.RandomNumber;
+import game.domain.numbergame.number.RandomNumber;
 import org.junit.jupiter.api.Test;
 
 public class RandomNumberTest {

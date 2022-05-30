@@ -1,4 +1,4 @@
-package numbergame.number;
+package game.domain.numbergame.number;
 
 import org.springframework.stereotype.Component;
 

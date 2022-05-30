@@ -1,9 +1,8 @@
-package numbergame.web;
+package game.web.radomNumber;
 
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import numbergame.number.InputNumber;
-import numbergame.number.RandomNumber;
+import game.domain.numbergame.number.InputNumber;
+import game.domain.numbergame.number.RandomNumber;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Slf4j
 @Controller
-
 public class RandomNumberController {
 
     private final RandomNumber randomNumber = new RandomNumber();
@@ -22,9 +20,7 @@ public class RandomNumberController {
     int cnt = 1;
 
     @GetMapping("/number-game")
-    public String numberGame(Model model) {
-
-        model.addAttribute(new InputNumber());
+    public String numberGame(@ModelAttribute InputNumber inputNumber) {
 
         log.info("숫자 맞추기 게임 사이트 접속");
         log.info("난수 생성 ={}", rn);
