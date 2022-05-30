@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +26,7 @@ public class MemberController {
     }
 
     @PostMapping("/add")
-    public String save(@ModelAttribute Member member, BindingResult bindingResult) {
+    public String save(@Validated @ModelAttribute Member member, BindingResult bindingResult) {
         if(bindingResult.hasErrors()) {
             log.info("errors={}", bindingResult);
             return "members/addForm";
