@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Optional;
+
 @Slf4j
 @Controller
 @RequiredArgsConstructor
@@ -31,6 +33,14 @@ public class MemberController {
             log.info("errors={}", bindingResult);
             return "members/addForm";
         }
+
+        Optional<Member> loginId = memberRepository.findByLoginId(member.getLoginId());
+
+        if(!loginId.isEmpty()) {
+            bindingResult.reject("saveFail", "아이디가 존재합니다.");
+            return "members/addForm";
+        }
+
         memberRepository.save(member);
         return "redirect:/";
     }
