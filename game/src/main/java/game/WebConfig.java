@@ -21,9 +21,9 @@ public class WebConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
 
         registry.addInterceptor(new LoginCheckInterceptor())
-                .order(2)
+                .order(1)
                 .addPathPatterns("/**")
-                .excludePathPatterns("/", "/members/add", "/login", "/logout",
+                .excludePathPatterns("/", "/members/add", "/number-game-ranking" ,"/login", "/logout",
                         "/css/**", "/*.ico", "/error");
     }
 }
