@@ -2,7 +2,6 @@ package game.web.radomNumber;
 
 import game.domain.numbergame.number.InputNumber;
 import game.domain.numbergame.number.RandomNumber;
-import game.domain.numbergame.rank.Ranking;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -70,6 +70,7 @@ public class RandomNumberController {
 
     @GetMapping("/number-game-ranking")
     public String rank(Model model) {
+        Collections.sort(rank);
         model.addAttribute("rank", rank);
         log.info("rank={}", rank);
         return "game/ranking";
