@@ -1,9 +1,10 @@
 package game.web.radomNumber;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import game.domain.numbergame.number.InputNumber;
 import game.domain.numbergame.number.RandomNumber;
+import game.domain.numbergame.rank.Ranking;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,7 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -21,15 +23,15 @@ import javax.servlet.http.HttpServletRequest;
 public class RandomNumberController {
 
     private final RandomNumber randomNumber;
-    //시도 횟수
+
+    List<Integer> rank = new ArrayList<>();
     int cnt = 1;
-
     @GetMapping("/number-game")
-    public String numberGame(@ModelAttribute InputNumber inputNumber, Model model) {
+    public String numberGame(@ModelAttribute InputNumber inputNumber) {
         int rn = randomNumber.setNum();
-
         log.info("숫자 맞추기 게임 사이트 접속");
-        log.info("난수 생성 ={}", rn);
+        log.info("rn 생성={}", rn);
+        log.info("cnt={}", cnt);
 
         return "game/number";
     }
@@ -37,17 +39,15 @@ public class RandomNumberController {
     @PostMapping("/number-game")
     public String confirmationNumber(@Validated @ModelAttribute InputNumber inputNumber, BindingResult bindingResult, Model model) {
         int rn = randomNumber.getNum();
-        log.info("rn={}", rn);
+
+        log.info("input={}", inputNumber.getInput());
+        log.info("cnt={}", cnt);
 
         //검증 실패시 다시 입력 창
         if(bindingResult.hasErrors()) {
             log.info("errors ={}", bindingResult);
             return "game/number";
         }
-
-        log.info("number={}", inputNumber.getInput());
-        log.info("rn={}", rn);
-        log.info("cnt={}", cnt);
 
         model.addAttribute("cnt", cnt);
 
@@ -57,13 +57,21 @@ public class RandomNumberController {
         } else if(inputNumber.getInput() < rn) {
             cnt++;
             bindingResult.addError(new FieldError("inputNumber", "input", "틀렸습니다 업!"));
-        }
-
-        if(inputNumber.getInput() == rn) {
-            //시도 횟수 초기화
+        } else {
+            //숫자 맞추면 시도 횟수 초기화
+            rank.add(cnt);
             cnt = 1;
+            log.info("rank={}", rank);
             return "game/correctResult";
         }
+
         return "game/number";
+    }
+
+    @GetMapping("/number-game-ranking")
+    public String rank(Model model) {
+        model.addAttribute("rank", rank);
+        log.info("rank={}", rank);
+        return "game/ranking";
     }
 }
