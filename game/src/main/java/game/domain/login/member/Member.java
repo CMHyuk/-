@@ -3,19 +3,19 @@ package game.domain.login.member;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
 
 @Data
 public class Member {
 
     private Long id;
 
-    @Size(min = 8, max = 20)
+    @Pattern(regexp = "^[a-zA-Z]{1}[a-zA-Z0-9]{8,12}$")
     private String loginId;
 
     @NotEmpty
     private String name;
 
-    @Size(min = 8, max = 20)
+    @Pattern(regexp = "^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-z]).{8,16}$")
     private String password;
 }
