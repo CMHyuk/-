@@ -44,6 +44,12 @@
                    th:errorclass="field-error">
             <div class="field-error" th:errors="*{name}" />
         </div>
+        <div>
+            <label for="name">전화번호</label>
+            <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control"
+                   th:errorclass="field-error">
+            <div class="field-error" th:errors="*{phoneNumber}" />
+        </div>
         <hr class="my-4">
         <div class="row">
             <div class="col">
