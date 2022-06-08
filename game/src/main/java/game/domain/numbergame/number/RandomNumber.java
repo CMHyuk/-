@@ -1,18 +1,17 @@
 package game.domain.numbergame.number;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
-@Component
+@Service
 public class RandomNumber {
 
     Random random = new Random();
-
     int rn;
 
     public int setNum() {
-        rn = random.nextInt(100)+1; //1~99 난수 생성
+        rn = random.nextInt(100)+1; //1~100 난수 생성
         return rn;
     }
 
