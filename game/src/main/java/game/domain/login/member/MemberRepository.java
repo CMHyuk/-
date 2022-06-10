@@ -20,6 +20,11 @@ public class MemberRepository {
         return member;
     }
 
+    public void edit(Member member, String password) {
+        store.get(member.getId()).setPassword(password);
+        store.replace(member.getId(), member);
+    }
+
     public Member findById(Long id) {
         return store.get(id);
     }
