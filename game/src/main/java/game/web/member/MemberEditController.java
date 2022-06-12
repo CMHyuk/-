@@ -5,6 +5,7 @@ import game.domain.login.member.MemberRepository;
 import game.domain.login.member.edit.Password;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Slf4j
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/members")
 public class MemberEditController {
