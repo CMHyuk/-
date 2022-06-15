@@ -45,6 +45,12 @@
             <div class="field-error" th:errors="*{name}" />
         </div>
         <div>
+            <label for="name">생년월일</label>
+            <input type="text" id="birth" th:field="*{birth}" class="form-control"
+                   th:errorclass="field-error">
+            <div class="field-error" th:errors="*{birth}" />
+        </div>
+        <div>
             <label for="name">전화번호</label>
             <input type="text" id="phoneNumber" th:field="*{phoneNumber}" class="form-control"
                    th:errorclass="field-error">
