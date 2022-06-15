@@ -1,4 +1,4 @@
-package game.web.member.find;
+package game.web.member.find.password;
 
 import lombok.Getter;
 import lombok.Setter;

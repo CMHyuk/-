@@ -1,4 +1,4 @@
-package game.web.member.find;
+package game.web.member.find.password;
 
 import game.domain.login.member.Member;
 import lombok.extern.slf4j.Slf4j;
