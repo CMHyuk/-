@@ -2,7 +2,8 @@ package game.web.member;
 
 import game.domain.login.member.Member;
 import game.domain.login.member.MemberRepository;
-import game.web.member.find.FindLoginPassword;
+import game.web.member.find.id.FindLoginId;
+import game.web.member.find.password.FindLoginPassword;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -22,7 +23,9 @@ import java.util.Optional;
 public class MemberAddController {
 
     private final MemberRepository memberRepository;
-    private final FindLoginPassword findLoginId;
+    private final FindLoginId findLoginId;
+    private final FindLoginPassword findLoginPassword;
+
 
     @GetMapping("/add")
     public String addForm(@ModelAttribute Member member) {
@@ -44,7 +47,9 @@ public class MemberAddController {
         }
 
         memberRepository.save(member);
-        findLoginId.saveFindPassword(member);
+        findLoginId.saveFindId(member);
+        findLoginPassword.saveFindPassword(member);
+
         log.info("member={}", member);
         return "redirect:/";
     }
