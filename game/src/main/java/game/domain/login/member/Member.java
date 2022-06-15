@@ -19,6 +19,9 @@ public class Member {
     @Pattern(regexp = "^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-z]).{8,16}$")
     private String password;
 
+    @Pattern(regexp = "^[0-9]{6}")
+    private String birth;
+
     @Pattern(regexp = "^[0-9]{11}")
     private String phoneNumber;
 }
