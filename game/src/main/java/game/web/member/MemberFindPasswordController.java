@@ -2,8 +2,8 @@ package game.web.member;
 
 import game.domain.login.member.Member;
 import game.domain.login.member.MemberRepository;
-import game.web.member.find.FindLoginPassword;
-import game.web.member.find.FindPassword;
+import game.web.member.find.password.FindLoginPassword;
+import game.web.member.find.password.FindPassword;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -21,21 +21,21 @@ import java.util.Optional;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/members")
-public class MemberFindController {
+public class MemberFindPasswordController {
 
     private final MemberRepository memberRepository;
     private final FindLoginPassword findLoginPassword;
 
     @GetMapping("/findPassword")
     public String findForm(@ModelAttribute FindPassword findPassword) {
-        return "members/findForm";
+        return "members/findPasswordForm";
     }
 
     @PostMapping("/findPassword")
     public String find(@Validated @ModelAttribute FindPassword findPassword, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             log.info("errors={}", bindingResult);
-            return "members/findForm";
+            return "members/findPasswordForm";
         }
 
         Optional<Member> loginId = memberRepository.findByLoginId(findPassword.getInputId());
@@ -44,7 +44,7 @@ public class MemberFindController {
 
         if (loginId.isEmpty()) {
             bindingResult.reject("findFail", "아이디가 존재하지 않습니다.");
-            return "members/findForm";
+            return "members/findPasswordForm";
         }
 
         log.info("findLoginPassword={}", findLoginPassword.findByPassword(findPassword.getInputId()));
