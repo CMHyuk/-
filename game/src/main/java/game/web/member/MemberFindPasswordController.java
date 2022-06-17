@@ -28,14 +28,14 @@ public class MemberFindPasswordController {
 
     @GetMapping("/findPassword")
     public String findForm(@ModelAttribute FindPassword findPassword) {
-        return "members/findPasswordForm";
+        return "members/findPassword/findPasswordForm";
     }
 
     @PostMapping("/findPassword")
     public String find(@Validated @ModelAttribute FindPassword findPassword, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             log.info("errors={}", bindingResult);
-            return "members/findPasswordForm";
+            return "members/findPassword/findPasswordForm";
         }
 
         Optional<Member> loginId = memberRepository.findByLoginId(findPassword.getInputId());
@@ -44,13 +44,13 @@ public class MemberFindPasswordController {
 
         if (loginId.isEmpty()) {
             bindingResult.reject("findFail", "아이디가 존재하지 않습니다.");
-            return "members/findPasswordForm";
+            return "members/findPassword/findPasswordForm";
         }
 
         log.info("findLoginPassword={}", findLoginPassword.findByPassword(findPassword.getInputId()));
         model.addAttribute("password", findLoginPassword.findByPassword(findPassword.getInputId()));
 
-        return "members/findPassword";
+        return "members/findPassword/findPassword";
     }
 
 }

@@ -23,7 +23,7 @@ public class MemberFindIdController {
 
     @GetMapping("findId")
     public String findIdForm(@ModelAttribute FindId findId) {
-        return "members/findIdForm";
+        return "members/findId/findIdForm";
     }
 
     @PostMapping("findId")
@@ -31,7 +31,7 @@ public class MemberFindIdController {
 
         if(bindingResult.hasErrors()) {
             log.info("errors={}", bindingResult);
-            return "members/findIdForm";
+            return "members/findId/findIdForm";
         }
 
         String name = findId.getInputName();
@@ -42,11 +42,11 @@ public class MemberFindIdController {
 
         if(findById == null) {
             bindingResult.reject("findFail", "입력 정보에 맞는 아이디가 존재하지 않습니다.");
-            return "members/findIdForm";
+            return "members/findId/findIdForm";
         }
 
         model.addAttribute("id", findById);
 
-        return "members/findId";
+        return "members/findId/findId";
     }
 }
