@@ -4,14 +4,14 @@ import game.domain.login.member.Member;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Component
 public class FindLoginId {
 
-    private static final Map<String, String> findId = new ConcurrentHashMap<>();
+    private static final Map<String, String> findId = new HashMap<>();
 
     public Member saveFindId(Member member) {
         findId.put(member.getName()+member.getBirth(), member.getLoginId());
