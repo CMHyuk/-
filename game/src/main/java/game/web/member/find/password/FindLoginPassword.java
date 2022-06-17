@@ -22,4 +22,9 @@ public class FindLoginPassword {
     public String findByPassword(String loginId) {
         return findPassword.get(loginId);
     }
+
+    public void editPassword(Member member, String password) {
+        findPassword.get(member.getLoginId());
+        findPassword.replace(member.getLoginId(), password);
+    }
 }
