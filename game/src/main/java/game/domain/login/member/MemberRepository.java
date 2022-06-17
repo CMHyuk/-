@@ -25,10 +25,6 @@ public class MemberRepository {
         store.replace(member.getId(), member);
     }
 
-    public Member findById(Long id) {
-        return store.get(id);
-    }
-
     public Optional<Member> findByLoginId(String loginId) {
         return findAll().stream()
                 .filter(m -> m.getLoginId().equals(loginId))
@@ -39,7 +35,4 @@ public class MemberRepository {
         return new ArrayList<>(store.values());
     }
 
-    public void clearStore() {
-        store.clear();
-    }
 }
