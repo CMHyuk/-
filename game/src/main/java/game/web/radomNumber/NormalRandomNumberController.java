@@ -1,7 +1,7 @@
 package game.web.radomNumber;
 
-import game.domain.numbergame.number.InputNumber;
-import game.domain.numbergame.number.RandomNumber;
+import game.domain.numbergame.number.NormalInputNumber;
+import game.domain.numbergame.number.NormalRandomNumber;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -20,41 +20,41 @@ import java.util.List;
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-public class RandomNumberController {
+public class NormalRandomNumberController {
 
-    private final RandomNumber randomNumber;
+    private final NormalRandomNumber normalRandomNumber;
 
     List<Integer> rank = new ArrayList<>();
     int cnt = 1;
-    @GetMapping("/number-game")
-    public String numberGame(@ModelAttribute InputNumber inputNumber) {
-        int rn = randomNumber.setNum();
+    @GetMapping("/normal-number-game")
+    public String numberGame(@ModelAttribute NormalInputNumber normalInputNumber) {
+        int rn = normalRandomNumber.setNum();
         log.info("숫자 맞추기 게임 사이트 접속");
         log.info("rn 생성={}", rn);
         log.info("cnt={}", cnt);
 
-        return "game/number";
+        return "game/normal-number";
     }
 
-    @PostMapping("/number-game")
-    public String confirmationNumber(@Validated @ModelAttribute InputNumber inputNumber, BindingResult bindingResult, Model model) {
-        int rn = randomNumber.getNum();
+    @PostMapping("/normal-number-game")
+    public String confirmationNumber(@Validated @ModelAttribute NormalInputNumber normalInputNumber, BindingResult bindingResult, Model model) {
+        int rn = normalRandomNumber.getNum();
 
-        log.info("input={}", inputNumber.getInput());
+        log.info("input={}", normalInputNumber.getInput());
         log.info("cnt={}", cnt);
 
         //검증 실패시 다시 입력 창
         if(bindingResult.hasErrors()) {
             log.info("errors ={}", bindingResult);
-            return "game/number";
+            return "game/normal-number";
         }
 
         model.addAttribute("cnt", cnt);
 
-        if(inputNumber.getInput() > rn) {
+        if(normalInputNumber.getInput() > rn) {
             cnt++;
             bindingResult.addError(new FieldError("inputNumber", "input", "틀렸습니다 다운!"));
-        } else if(inputNumber.getInput() < rn) {
+        } else if(normalInputNumber.getInput() < rn) {
             cnt++;
             bindingResult.addError(new FieldError("inputNumber", "input", "틀렸습니다 업!"));
         } else {
@@ -65,14 +65,15 @@ public class RandomNumberController {
             return "game/correctResult";
         }
 
-        return "game/number";
+        return "game/normal-number";
     }
 
-    @GetMapping("/number-game-ranking")
+    @GetMapping("/normal-number-game-ranking")
     public String rank(Model model) {
         Collections.sort(rank);
         model.addAttribute("rank", rank);
         log.info("rank={}", rank);
         return "game/ranking";
     }
+
 }
