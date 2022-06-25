@@ -41,7 +41,7 @@
         <h2>숫자 게임</h2>
     </div>
 
-    <form action="number.html" th:action th:object="${inputNumber}" method="post">
+    <form action="normal-number.html" th:action th:object="${normalInputNumber}" method="post">
         <div>
             <input type="text" id="input" th:field="*{input}"
                    th:errorclass="field-error" class="form-control"
@@ -57,7 +57,7 @@
         <div class="row">
             <div class="col">
                 <button class="w-100 btn btn-primary btn-lg"
-                        onclick="location.href='number.html" type="submit">확인 하기</button>
+                        onclick="location.href='number.html'" type="submit">확인 하기</button>
             </div>
         </div>
 
