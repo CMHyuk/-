@@ -1,6 +1,5 @@
-package game.web.radomNumber;
+package game.web.radomNumber.normal;
 
-import game.domain.numbergame.number.NormalInputNumber;
 import game.domain.numbergame.number.NormalRandomNumber;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +32,7 @@ public class NormalRandomNumberController {
         log.info("rn 생성={}", rn);
         log.info("cnt={}", cnt);
 
-        return "game/normal-number";
+        return "game/normal/normal-number";
     }
 
     @PostMapping("/normal-number-game")
@@ -46,7 +45,7 @@ public class NormalRandomNumberController {
         //검증 실패시 다시 입력 창
         if(bindingResult.hasErrors()) {
             log.info("errors ={}", bindingResult);
-            return "game/normal-number";
+            return "game/normal/normal-number";
         }
 
         model.addAttribute("cnt", cnt);
@@ -62,18 +61,18 @@ public class NormalRandomNumberController {
             rank.add(cnt);
             cnt = 1;
             log.info("rank={}", rank);
-            return "game/correctResult";
+            return "game/normal/normal-result";
         }
 
-        return "game/normal-number";
+        return "game/normal/normal-number";
     }
 
-    @GetMapping("/normal-number-game-ranking")
+    @GetMapping("/normal-ranking")
     public String rank(Model model) {
         Collections.sort(rank);
         model.addAttribute("rank", rank);
         log.info("rank={}", rank);
-        return "game/ranking";
+        return "game/normal/normal-ranking";
     }
 
 }

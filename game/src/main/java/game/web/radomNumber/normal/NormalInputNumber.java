@@ -1,4 +1,4 @@
-package game.domain.numbergame.number;
+package game.web.radomNumber.normal;
 
 import lombok.Getter;
 import lombok.Setter;
