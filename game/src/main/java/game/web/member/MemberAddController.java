@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.annotation.PostConstruct;
 import java.util.Optional;
 
 @Slf4j
@@ -46,12 +47,22 @@ public class MemberAddController {
             return "members/addForm";
         }
 
+        if(!member.getPassword().equals(member.getCheckPassword())) {
+            bindingResult.reject("saveFail", "비밀번호가 일치하지 않습니다.");
+            return "members/addForm";
+        }
+
         memberRepository.save(member);
         findLoginId.saveFindId(member);
         findLoginPassword.saveFindPassword(member);
 
         log.info("member={}", member);
         return "redirect:/";
+    }
+
+    @PostConstruct
+    public void init() {
+        memberRepository.save(new Member("alsgur9042", "최민혁!", "cjdrn9040!", "990825", "01087449042"));
     }
 
 }
