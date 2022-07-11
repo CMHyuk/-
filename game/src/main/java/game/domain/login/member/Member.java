@@ -19,9 +19,19 @@ public class Member {
     @Pattern(regexp = "^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-z]).{8,16}$")
     private String password;
 
-    @Pattern(regexp = "^[0-9]{6}")
+    private String checkPassword;
+
+    @Pattern(regexp = "^[0-9]{6}", message = "생년월일 6자리를 입력하세요.")
     private String birth;
 
     @Pattern(regexp = "^[0-9]{11}")
     private String phoneNumber;
+
+    public Member(String loginId, String name, String password, String birth, String phoneNumber) {
+        this.loginId = loginId;
+        this.name = name;
+        this.password = password;
+        this.birth = birth;
+        this.phoneNumber = phoneNumber;
+    }
 }
