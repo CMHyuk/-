@@ -1,0 +1,34 @@
+킹<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link th:href="@{/css/bootstrap.min.css}"
+        href="css/bootstrap.min.css" rel="stylesheet">
+  <title>회원 수정</title>
+</head>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="level">Game</a>
+        <li class="nav-item">
+          <a class="nav-link" href="ranking">Ranking</a>
+      </ul>
+    </div>
+  </div>
+</nav>
+<body>
+<div class="py-5 text-center">
+  <h2>회원 수정</h2>
+</div>
+<div class="d-grid gap-2 col-6 mx-auto">
+  <a href="/members/edit" role="button">비밀번호 수정</a>
+  <a href="/members/remove" role="button">회원 탈퇴</a>
+</div>
+</body>
+</html>
