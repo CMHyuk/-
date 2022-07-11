@@ -3,6 +3,7 @@ package game.web.member;
 import game.domain.login.member.Member;
 import game.domain.login.member.MemberRepository;
 import game.domain.login.member.edit.Password;
+import game.web.argumentresolver.Login;
 import game.web.member.find.password.FindLoginPassword;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +41,7 @@ public class MemberEditController {
 
     @PostMapping("/edit")
     public String edit(@Validated @ModelAttribute Password password, BindingResult bindingResult,
-                       @SessionAttribute(required = false) Member loginMember,
+                       @Login Member loginMember,
                        HttpServletRequest request) {
 
         if(loginMember == null) {

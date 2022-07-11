@@ -2,6 +2,7 @@ package game.web.member;
 
 import game.domain.login.member.Member;
 import game.domain.login.member.MemberRepository;
+import game.web.argumentresolver.Login;
 import game.web.member.remove.InputText;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,8 +29,7 @@ public class MemberRemoveController {
 
     @PostMapping("/remove")
     public String remove(@Validated @ModelAttribute InputText inputText, BindingResult bindingResult,
-                         @SessionAttribute(required = false) Member loginMember,
-                         HttpServletRequest request) {
+                         @Login Member loginMember, HttpServletRequest request) {
 
         log.info("loginMember={}", loginMember);
 
