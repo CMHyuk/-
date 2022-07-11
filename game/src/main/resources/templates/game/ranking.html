@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link th:href="@{/css/bootstrap.min.css}"
+        href="css/bootstrap.min.css" rel="stylesheet">
+  <title>랭킹</title>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="level">Game</a>
+        <li class="nav-item">
+          <a class="nav-link" href="ranking">Ranking</a>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="py-5 text-center">
+  <h2>랭킹</h2>
+</div>
+<div class="d-grid gap-2 col-6 mx-auto">
+  <a class="btn btn-primary" href="/easy-ranking" role="button">Easy</a>
+  <a class="btn btn-primary" href="/normal-ranking" role="button">Normal</a>
+  <a class="btn btn-primary" href="/hard-ranking" role="button">Hard</a>
+</div>
+</body>
+</html>
