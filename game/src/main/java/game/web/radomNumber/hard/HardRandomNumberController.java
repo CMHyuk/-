@@ -55,15 +55,21 @@ public class HardRandomNumberController {
         if(hardInputNumber.getInput() > rn) {
             cnt++;
             bindingResult.addError(new FieldError("inputNumber", "input", "틀렸습니다 다운!"));
-        } else if(hardInputNumber.getInput() < rn) {
+            return "game/hard/hard-number";
+        }
+
+        if(hardInputNumber.getInput() < rn) {
             cnt++;
             bindingResult.addError(new FieldError("inputNumber", "input", "틀렸습니다 업!"));
-        } else {
+            return "game/hard/hard-number";
+        }
+
+        if(hardInputNumber.getInput() < rn) {
             //숫자 맞추면 시도 횟수 초기화
             rank.add(cnt);
             cnt = 1;
             log.info("rank={}", rank);
-            return "game/hard/hard-result";
+            return "redirect:/hard-ranking";
         }
 
         return "game/hard/hard-number";

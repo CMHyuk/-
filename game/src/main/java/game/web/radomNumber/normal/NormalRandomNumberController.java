@@ -53,15 +53,21 @@ public class NormalRandomNumberController {
         if(normalInputNumber.getInput() > rn) {
             cnt++;
             bindingResult.addError(new FieldError("inputNumber", "input", "틀렸습니다 다운!"));
-        } else if(normalInputNumber.getInput() < rn) {
+            return "game/normal/normal-number";
+        }
+
+        if(normalInputNumber.getInput() < rn) {
             cnt++;
             bindingResult.addError(new FieldError("inputNumber", "input", "틀렸습니다 업!"));
-        } else {
+            return "game/normal/normal-number";
+        }
+
+        if(normalInputNumber.getInput() == rn){
             //숫자 맞추면 시도 횟수 초기화
             rank.add(cnt);
             cnt = 1;
             log.info("rank={}", rank);
-            return "game/normal/normal-result";
+            return "redirect:/normal-ranking";
         }
 
         return "game/normal/normal-number";

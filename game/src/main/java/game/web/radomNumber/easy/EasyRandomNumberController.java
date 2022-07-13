@@ -11,6 +11,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -43,7 +44,7 @@ public class EasyRandomNumberController {
 
         //검증 실패시 다시 입력 창
         if(bindingResult.hasErrors()) {
-            log.info("errors ={}", bindingResult);
+            log.info("errors={}", bindingResult);
             return "game/easy/easy-number";
         }
 
@@ -52,18 +53,24 @@ public class EasyRandomNumberController {
         if(easyInputNumber.getInput() > rn) {
             cnt++;
             bindingResult.addError(new FieldError("inputNumber", "input", "틀렸습니다 다운!"));
-        } else if(easyInputNumber.getInput() < rn) {
+            return "game/easy/easy-number";
+        }
+
+        if(easyInputNumber.getInput() < rn) {
             cnt++;
             bindingResult.addError(new FieldError("inputNumber", "input", "틀렸습니다 업!"));
-        } else {
+            return "game/easy/easy-number";
+        }
+
+        if(easyInputNumber.getInput() == rn) {
             //숫자 맞추면 시도 횟수 초기화
             rank.add(cnt);
             cnt = 1;
             log.info("rank={}", rank);
-            return "game/easy/easy-result";
+            return "redirect:/easy-ranking";
         }
 
-        return "game//easy/easy-number";
+        return "game/easy/easy-number";
     }
 
     @GetMapping("/easy-ranking")
