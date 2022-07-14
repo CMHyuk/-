@@ -1,31 +1,8 @@
-창<!DOCTYPE html>
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8">
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .container {
-            max-width: 500px;
-        }
-    </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/">Home</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" href="level">Game</a>
-                <li class="nav-item">
-                    <a class="nav-link" href="ranking">Ranking</a>
-            </ul>
-        </div>
-    </div>
-</nav>
 <h1>어려움 랭킹</h1>
 <table border="1">
     <tr>
@@ -38,5 +15,10 @@
     </tr>
 </table>
 </table>
+<div class="sub_area">
+    <div class="look_box">
+        <a href="/ranking" class="link_look">돌아가기</a>
+    </div>
+</div>
 </body>
 </html>
