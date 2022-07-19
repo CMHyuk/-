@@ -62,7 +62,7 @@ public class MemberAddController {
 
     @PostConstruct
     public void init() {
-        memberRepository.save(new Member("alsgur9042", "최민혁!", "cjdrn9040!", "990825", "01087449042"));
+        memberRepository.save(new Member("asdqwe123", "userA", "asdqwe123!", "999999", "01012345678"));
     }
 
 }
