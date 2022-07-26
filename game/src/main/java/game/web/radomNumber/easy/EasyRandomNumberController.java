@@ -1,6 +1,7 @@
 package game.web.radomNumber.easy;
 
 import game.domain.numbergame.number.EasyRandomNumber;
+import game.domain.numbergame.number.service.GameService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ import java.util.List;
 public class EasyRandomNumberController {
 
     private final EasyRandomNumber easyRandomNumber;
+    private final GameService gameService;
     List<Integer> rank = new ArrayList<>();
     int cnt = 1;
     @GetMapping("/easy-number-game")
