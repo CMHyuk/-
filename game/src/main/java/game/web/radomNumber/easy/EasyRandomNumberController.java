@@ -24,7 +24,6 @@ import java.util.List;
 public class EasyRandomNumberController {
 
     private final EasyRandomNumber easyRandomNumber;
-    private final GameService gameService;
     List<Integer> rank = new ArrayList<>();
     int cnt = 1;
     @GetMapping("/easy-number-game")
