@@ -28,6 +28,12 @@ dependencies {
 	annotationProcessor('org.projectlombok:lombok')
 }
 
+
 tasks.named('test') {
-	useJUnitPlatform()
+		useJUnitPlatform()
 }
+
+bootJar {
+	destinationDirectory = file("./target")
+}
+
