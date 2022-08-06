@@ -2,6 +2,7 @@ package game.web.member;
 
 import game.domain.login.member.Member;
 import game.domain.login.member.MemberRepository;
+import game.domain.login.memberservice.MemberService;
 import game.web.member.find.id.FindLoginId;
 import game.web.member.find.password.FindLoginPassword;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +25,7 @@ import java.util.Optional;
 public class MemberAddController {
 
     private final MemberRepository memberRepository;
+    private final MemberService memberService;
     private final FindLoginId findLoginId;
     private final FindLoginPassword findLoginPassword;
 
@@ -40,7 +42,7 @@ public class MemberAddController {
             return "members/addForm";
         }
 
-        Optional<Member> loginId = memberRepository.findByLoginId(member.getLoginId());
+        Optional<Member> loginId = memberService.findByLoginId(member.getLoginId());
 
         if(!loginId.isEmpty()) {
             bindingResult.reject("saveFail", "아이디가 존재합니다.");
@@ -52,7 +54,7 @@ public class MemberAddController {
             return "members/addForm";
         }
 
-        memberRepository.save(member);
+        memberService.join(member);
         findLoginId.saveFindId(member);
         findLoginPassword.saveFindPassword(member);
 
@@ -62,7 +64,7 @@ public class MemberAddController {
 
     @PostConstruct
     public void init() {
-        memberRepository.save(new Member("asdqwe123", "userA", "asdqwe123!", "999999", "01012345678"));
+        memberService.join(new Member("asdqwe123", "userA", "asdqwe123!", "999999", "01012345678"));
     }
 
 }

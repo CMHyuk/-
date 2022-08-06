@@ -2,6 +2,7 @@ package game.web.member;
 
 import game.domain.login.member.Member;
 import game.domain.login.member.MemberRepository;
+import game.domain.login.memberservice.MemberService;
 import game.web.argumentresolver.Login;
 import game.web.member.remove.InputText;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/members")
 public class MemberRemoveController {
 
-    private final MemberRepository memberRepository;
+    private final MemberService memberService;
 
     @GetMapping("/remove")
     public String removeForm(@ModelAttribute InputText inputText) {
@@ -50,9 +51,9 @@ public class MemberRemoveController {
             return "members/removeForm";
         }
 
-        Member removeMember = memberRepository.findById(loginMember.getId());
-        memberRepository.remove(removeMember.getId());
-        log.info("members={}", memberRepository.findAll());
+        Member removeMember = memberService.findById(loginMember.getId());
+        memberService.remove(removeMember.getId());
+        log.info("members={}", memberService.findAll());
 
         HttpSession session = request.getSession(false);
         session.invalidate();

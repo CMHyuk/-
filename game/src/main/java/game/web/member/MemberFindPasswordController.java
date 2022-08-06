@@ -2,6 +2,7 @@ package game.web.member;
 
 import game.domain.login.member.Member;
 import game.domain.login.member.MemberRepository;
+import game.domain.login.memberservice.MemberService;
 import game.web.member.find.password.FindLoginPassword;
 import game.web.member.find.password.FindPassword;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ import java.util.Optional;
 @RequestMapping("/members")
 public class MemberFindPasswordController {
 
-    private final MemberRepository memberRepository;
+    private final MemberService memberService;
     private final FindLoginPassword findLoginPassword;
 
     @GetMapping("/findPassword")
@@ -38,7 +39,7 @@ public class MemberFindPasswordController {
             return "members/findPassword/findPasswordForm";
         }
 
-        Optional<Member> loginId = memberRepository.findByLoginId(findPassword.getInputId());
+        Optional<Member> loginId = memberService.findByLoginId(findPassword.getInputId());
 
         log.info("loginId={}", loginId);
 

@@ -3,6 +3,7 @@ package game.web.member;
 import game.domain.login.member.Member;
 import game.domain.login.member.MemberRepository;
 import game.domain.login.member.edit.Password;
+import game.domain.login.memberservice.MemberService;
 import game.web.argumentresolver.Login;
 import game.web.member.find.password.FindLoginPassword;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +25,12 @@ import java.util.List;
 @RequestMapping("/members")
 public class MemberEditController {
 
-    private final MemberRepository memberRepository;
+    private final MemberService memberService;
     private final FindLoginPassword findLoginPassword;
 
     @GetMapping("/editHome")
     public String editHome(Model model) {
-        List<Member> memberId = memberRepository.findAll();
+        List<Member> memberId = memberService.findAll();
         model.addAttribute("memberId", memberId);
         return "members/editHome";
     }
@@ -82,7 +83,7 @@ public class MemberEditController {
             return "members/editPasswordForm";
         }
 
-        memberRepository.edit(loginMember, newPassword);
+        memberService.editPassword(loginMember, newPassword);
         findLoginPassword.editPassword(loginMember, newPassword);
 
         log.info("editPassword={}", loginMember.getPassword());
