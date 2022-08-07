@@ -64,7 +64,7 @@ public class HardRandomNumberController {
             return "game/hard/hard-number";
         }
 
-        if(hardInputNumber.getInput() < rn) {
+        if(hardInputNumber.getInput() == rn) {
             //숫자 맞추면 시도 횟수 초기화
             rank.add(cnt);
             cnt = 1;
