@@ -1,8 +1,13 @@
 package game.domain.numbergame.number;
 
-public interface RandomNumber {
+import java.util.Random;
 
-    int setNum();
+public abstract class RandomNumber {
 
-    int getNum();
+    Random random = new Random();
+    int rn;
+
+    public abstract int setNum();
+
+    public abstract int getNum();
 }
