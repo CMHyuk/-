@@ -2,13 +2,8 @@ package game.domain.numbergame.number;
 
 import org.springframework.stereotype.Service;
 
-import java.util.Random;
-
 @Service
-public class NormalRandomNumber implements RandomNumber {
-
-    Random random = new Random();
-    int rn;
+public class NormalRandomNumber extends RandomNumber {
 
     @Override
     public int setNum() {
